@@ -23,11 +23,13 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('*', (req, res) => {
-  res.status(HTTP_STATUS_NOT_FOUND).send({ message: 'Страница не найдена' });
-});
+console.log(require('http2').constants);
 
 app.use('/users', require('./routes/users'));
 app.use('/cards', require('./routes/cards'));
+
+app.use('*', (req, res) => {
+  res.status(HTTP_STATUS_NOT_FOUND).send({ message: 'Страница не найдена' });
+});
 
 app.listen(PORT);

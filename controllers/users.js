@@ -40,33 +40,25 @@ module.exports.addUser = (req, res) => {
 
 module.exports.editUserData = (req, res) => {
   const { name, about } = req.body;
-  if (req.user._id) {
-    User.findByIdAndUpdate(req.user._id, { name, about }, { new: 'true', runValidators: true })
-      .then((user) => res.send(user))
-      .catch((err) => {
-        if (err.name === 'validationError') {
-          res.status(HTTP_STATUS_BAD_REQUEST).send({ message: err.message });
-        } else {
-          res.status(HTTP_STATUS_BAD_REQUEST).send({ message: 'Пользователь по указанному ID не найден' });
-        }
-      });
-  } else {
-    res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).send({ message: 'На сервере произошла ошибка' });
-  }
+  User.findByIdAndUpdate(req.user._id, { name, about }, { new: 'true', runValidators: true })
+    .then((user) => res.send(user))
+    .catch((err) => {
+      if (err.name === 'validationError') {
+        res.status(HTTP_STATUS_BAD_REQUEST).send({ message: err.message });
+      } else {
+        res.status(HTTP_STATUS_BAD_REQUEST).send({ message: 'Пользователь по указанному ID не найден' });
+      }
+    });
 };
 
 module.exports.editUserAvatar = (req, res) => {
-  if (req.user._id) {
-    User.findByIdAndUpdate(req.user._id, { avatar: req.body.avatar }, { new: 'true', runValidators: true })
-      .then((user) => res.send(user))
-      .catch((err) => {
-        if (err.name === 'validationError') {
-          res.status(hHTTP_STATUS_BAD_REQUEST).send({ message: err.message });
-        } else {
-          res.status(HTTP_STATUS_BAD_REQUEST).send({ message: 'Пользователь по указанному ID не найден' });
-        }
-      });
-  } else {
-    res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).send({ message: 'На сервере произошла ошибка' });
-  }
+  User.findByIdAndUpdate(req.user._id, { avatar: req.body.avatar }, { new: 'true', runValidators: true })
+    .then((user) => res.send(user))
+    .catch((err) => {
+      if (err.name === 'validationError') {
+        res.status(HTTP_STATUS_BAD_REQUEST).send({ message: err.message });
+      } else {
+        res.status(HTTP_STATUS_BAD_REQUEST).send({ message: 'Пользователь по указанному ID не найден' });
+      }
+    });
 };
