@@ -46,7 +46,7 @@ module.exports.editUserData = (req, res) => {
       if (err.name === 'validationError') {
         res.status(HTTP_STATUS_BAD_REQUEST).send({ message: err.message });
       } else {
-        res.status(HTTP_STATUS_BAD_REQUEST).send({ message: 'Пользователь по указанному ID не найден' });
+        res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).send({ message: 'Пользователь по указанному ID не найден' });
       }
     });
 };
@@ -58,7 +58,7 @@ module.exports.editUserAvatar = (req, res) => {
       if (err.name === 'validationError') {
         res.status(HTTP_STATUS_BAD_REQUEST).send({ message: err.message });
       } else {
-        res.status(HTTP_STATUS_BAD_REQUEST).send({ message: 'Пользователь по указанному ID не найден' });
+        res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).send({ message: 'Пользователь по указанному ID не найден' });
       }
     });
 };
