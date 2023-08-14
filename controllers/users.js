@@ -50,7 +50,6 @@ module.exports.editUserData = (req, res, next) => {
         next(new NotFoundError(`Пользователь по указанному ID: ${req.params.userId} не найден`));
       } else {
         next(err);
-        res.status(HTTP_STATUS_INTERNAL_SERVER_ERROR).send({ message: 'На сервере произошла ошибка' });
       }
     });
 };
@@ -66,7 +65,7 @@ module.exports.editUserAvatar = (req, res, next) => {
       } else if (err instanceof mongoose.Error.DocumentNotFoundError) {
         next(new NotFoundError(`Пользователь по указанному ID: ${req.params.userId} не найден`));
       } else {
-        res.status(HTTP_STATUS_BAD_REQUEST).send({ message: 'Пользователь по указанному ID не найден' });
+        next(err);
       }
     });
 };
