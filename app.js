@@ -23,8 +23,6 @@ app.use((req, res, next) => {
   next();
 });
 
-console.log(require('http2').constants);
-
 app.use('/users', require('./routes/users'));
 app.use('/cards', require('./routes/cards'));
 

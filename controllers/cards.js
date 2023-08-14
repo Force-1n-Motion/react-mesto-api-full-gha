@@ -1,8 +1,8 @@
-const { HTTP_STATUS_OK, HTTP_STATUS_CREATED } = require("http2").constants;
-const mongoose = require("mongoose");
-const Card = require("../models/card");
-const BadRequestError = require("../errors/BadRequestError");
-const NotFoundError = require("../errors/NotFoundError");
+const { HTTP_STATUS_OK, HTTP_STATUS_CREATED } = require('http2').constants;
+const mongoose = require('mongoose');
+const Card = require('../models/card');
+const BadRequestError = require('../errors/BadRequestError');
+const NotFoundError = require('../errors/NotFoundError');
 
 module.exports.addCard = (req, res, next) => {
   const { name, link } = req.body;
@@ -10,11 +10,11 @@ module.exports.addCard = (req, res, next) => {
     .then((card) => {
       Card.findById(card._id)
         .orFail()
-        .populate("owner")
+        .populate('owner')
         .then((data) => res.status(HTTP_STATUS_CREATED).send(data))
         .catch((err) => {
           if (err instanceof mongoose.Error.DocumentNotFoundError) {
-            next(new NotFoundError("Карточка с указанным ID не найдена"));
+            next(new NotFoundError('Карточка с указанным ID не найдена'));
           } else {
             next(err);
           }
@@ -31,7 +31,7 @@ module.exports.addCard = (req, res, next) => {
 
 module.exports.getCards = (req, res, next) => {
   Card.find({})
-    .populate(["owner", "likes"])
+    .populate(['owner', 'likes'])
     .then((cards) => res.status(HTTP_STATUS_OK).send(cards))
     .catch(next);
 };
@@ -40,7 +40,7 @@ module.exports.deleteCard = (req, res, next) => {
   Card.findByIdAndRemove(req.params.cardId)
     .orFail()
     .then(() => {
-      res.status(HTTP_STATUS_OK).send({ message: "Карточка удалена" });
+      res.status(HTTP_STATUS_OK).send({ message: 'Карточка удалена' });
     })
     .catch((err) => {
       if (err instanceof mongoose.Error.DocumentNotFoundError) {
@@ -54,9 +54,9 @@ module.exports.deleteCard = (req, res, next) => {
 };
 
 module.exports.likeCard = (req, res, next) => {
-  Card.findByIdAndUpdate(req.params.cardId,{ $addToSet: { likes: req.user._id } },{ new: true })
+  Card.findByIdAndUpdate(req.params.cardId, { $addToSet: { likes: req.user._id } }, { new: true })
     .orFail()
-    .populate(["owner", "likes"])
+    .populate(['owner', 'likes'])
     .then((card) => {
       res.status(HTTP_STATUS_OK).send(card);
     })
@@ -74,8 +74,8 @@ module.exports.likeCard = (req, res, next) => {
 module.exports.dislikeCard = (req, res, next) => {
   Card.findByIdAndUpdate(req.params.cardId, { $pull: { likes: req.user._id } }, { new: true })
     .orFail()
-    .populate(["owner", "likes"])
-    .then((card) => {res.status(HTTP_STATUS_OK).send(card);})
+    .populate(['owner', 'likes'])
+    .then((card) => { res.status(HTTP_STATUS_OK).send(card); })
     .catch((err) => {
       if (err instanceof mongoose.Error.DocumentNotFoundError) {
         next(new NotFoundError(`Карточка по указанному ID: ${req.params.cardId} не найдена`));
