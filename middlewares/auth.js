@@ -14,7 +14,7 @@ module.exports = (req, res, next) => {
   try {
     payload = jwt.verify(token, 'Favorite-Memories');
   } catch (err) {
-    throw UnautorizedError('Необходима авторизация');
+    throw new UnautorizedError('Необходима авторизация');
   }
 
   req.user = payload;
