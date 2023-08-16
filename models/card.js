@@ -1,38 +1,42 @@
 const mongoose = require('mongoose');
+const urlRegex = require('../utils/constants');
 
-const cardSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, 'Заполните поле'],
-    minlength: [2, 'Минимальная длинна -2'],
-    maxlength: [30, 'Максимальная длинна -30'],
-  },
-  link: {
-    type: String,
-    required: [true, 'Заполните поле'],
-    validate: {
-      validator(url) {
-        return /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test(url);
-      },
-      message: 'Введите URL',
+const cardSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, 'Заполните поле'],
+      minlength: [2, 'Минимальная длинна -2'],
+      maxlength: [30, 'Максимальная длинна -30'],
     },
-  },
-  owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'user',
-    required: true,
-  },
-  likes: [
-    {
+    link: {
+      type: String,
+      required: [true, 'Заполните поле'],
+      validate: {
+        validator(url) {
+          return urlRegex.test(url);
+        },
+        message: 'Введите URL',
+      },
+    },
+    owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'user',
-      default: [],
+      required: true,
     },
-  ],
-  createdAt: {
-    type: Date,
-    default: Date.now,
+    likes: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+        default: [],
+      },
+    ],
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
   },
-}, { versionKey: false });
+  { versionKey: false },
+);
 
 module.exports = mongoose.model('card', cardSchema);
