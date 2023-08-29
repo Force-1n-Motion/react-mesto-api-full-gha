@@ -1,0 +1,14 @@
+.login__text{
+text-align: center;
+margin: 60px auto 50px;
+
+font-size: 29px;
+
+}
+
+@media (max-width: 400px) {
+    .login__text{
+        font-size: 24px;
+        margin: 40px 30px;
+    }
+}

@@ -1,0 +1,18 @@
+.element__button-like {
+  width: 22px;
+  height: 19px;
+  padding: 0;
+  outline: none;
+  border: none;
+  background: url(../../../images/Vector.png);
+  flex-shrink: 0;
+  cursor: pointer;
+  position: absolute;
+  right: 0px;
+  bottom: 11px;
+  
+}
+
+.element__button-like:hover {
+  opacity: 0.5;
+}

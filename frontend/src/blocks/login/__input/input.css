@@ -1,0 +1,16 @@
+.input {
+    color: white;
+    font-size: 24px;
+    background:  transparent;
+    outline: none;
+    border: none;
+    width: 355px;
+    height: 30px;
+    margin-top: 30px;
+}
+
+@media (max-width: 700px) {
+    .input{
+        width: 260px;
+    }
+}

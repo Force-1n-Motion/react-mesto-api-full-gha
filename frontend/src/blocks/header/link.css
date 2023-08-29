@@ -1,0 +1,42 @@
+.link {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    float: right;
+    display: inline;
+    padding-top: 5px;
+}
+
+
+.link__login {
+    color: rgba(255, 255, 255, 1);
+    padding-top: 15px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.link__exit{
+    text-decoration: none;
+    color: rgba(169, 169, 169, 1);
+    font-size: 18px;
+    font-style: Inter;
+    float: right;
+    display: inline;
+    cursor: pointer;
+}
+
+@media (max-width: 950px) {
+  .link {
+    padding-right: 30px;
+  }
+}
+
+@media (max-width: 400px) {
+    .link {
+        padding-right: 30px;
+        font-size: 14px;
+    }
+
+    
+}

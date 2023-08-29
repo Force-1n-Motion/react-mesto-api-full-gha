@@ -1,0 +1,14 @@
+.profile__info {
+  display: grid;
+  gap: 10px 22px;
+  grid-template-columns: 1fr 24px;
+  padding: 0 0 0 31px;
+  max-width: 336px;
+}
+
+@media (max-width: 700px) {
+  .profile__info {
+    padding: 25px 0 34px 32px;
+    gap: 6px 11px;
+  }
+}

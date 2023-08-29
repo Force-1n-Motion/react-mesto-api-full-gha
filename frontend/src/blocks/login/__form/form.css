@@ -1,0 +1,15 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form>hr{
+    width: 360px;
+}
+
+@media (max-width: 700px) {
+    .form>hr{
+        width: 260px;
+    }
+}

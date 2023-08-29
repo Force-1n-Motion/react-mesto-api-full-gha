@@ -1,0 +1,14 @@
+.button__theme {
+  width: 250px;
+  height: 50px;
+  border: none;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  color: #b5acac;
+}
+
+.button__theme:hover {
+  opacity: 0.6;
+}

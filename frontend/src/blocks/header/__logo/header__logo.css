@@ -1,0 +1,18 @@
+.header__logo {
+  width: 142px;
+  height: 33px;
+}
+
+@media (max-width: 950px) {
+  .header__logo {
+    box-sizing: content-box;
+    padding-left: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .header__logo {
+    width: 103.74px;
+    height: 24.4px;
+  }
+}

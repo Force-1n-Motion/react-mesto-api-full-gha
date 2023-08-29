@@ -1,0 +1,25 @@
+.popup__content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 430px;
+  height: 330px;
+  justify-content: center;
+  text-align: center;
+}
+.popup__content>img{
+  width: 120px;
+  height: 120px;
+}
+
+@media (max-width: 700px) {
+  .popup__content{
+    width: 280px;
+    height: 308;
+  }
+  .popup__content>h2{
+    font-size: 20px;
+  }
+}
+
+  

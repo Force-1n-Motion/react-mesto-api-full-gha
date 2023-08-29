@@ -1,0 +1,136 @@
+/* NavigationMenu.css */
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 74px;
+  margin: 45px auto 40px;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  transition: 1s ease-out;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+  overflow-y: hidden;
+  transition: 1s cubic-bezier(.68,-0.55,.27,10.55);
+  padding-top: 5px;
+}
+
+
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+}
+
+.menu a::after {
+  content: "";
+  width: 0%;
+  height: 1.7px;
+  border-radius: 99px;
+  
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: 0.3s ease;
+}
+
+.menu li:hover a::after {
+  width: 100%;
+}
+
+.menu-icon {
+  width: 22px;
+  height: 16px;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 20px;
+}
+
+.menu-icon span {
+  width: 100%;
+  height: 2px;
+  border-radius: 99px;
+  background: #fff;
+  transition: 0.3s ease;
+  transform-origin: left;
+}
+
+
+
+.menu-icon.active span:nth-child(1) {
+  transform: rotate(40deg);
+}
+
+.menu-icon span:nth-child(3) {
+  transform-origin: left;
+}
+
+.menu-icon.active span:nth-child(3) {
+  transform: rotate(-40deg);
+}
+
+.menu-icon.active span:nth-child(2) {
+  transform: scale(0);
+}
+
+
+@media (max-width: 950px) {
+  .menu li {
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  
+  .menu-icon {
+    display: flex;
+  }
+
+  .menu {
+    flex-direction: column;
+   
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: -100px;
+    height: 0;
+    transition: 1s cubic-bezier(.68,-0.55,.27,1.55);
+    z-index: 2;
+  }
+  .nav.active .menu {
+    height: 120px;
+    position: fixed;
+    top: 0;
+    border-bottom: 1px solid rgba(119, 118, 118, 0.493);
+  }
+  .nav.active{
+    margin-top: 140px;
+    transition: 0.3s ease-in;
+  }
+
+  .menu li {
+    width: 100%;
+    text-align: center;
+  }
+  .menu a {
+    width: 100%;
+    text-transform: capitalize;
+  }
+}

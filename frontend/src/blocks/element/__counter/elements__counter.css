@@ -1,0 +1,15 @@
+.elements__counter {
+  position: absolute;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  width: 10px;
+  height: 13px;
+  color: black;
+  right: 6px;
+  bottom: -5px;
+
+}
