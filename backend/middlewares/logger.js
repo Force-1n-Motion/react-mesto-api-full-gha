@@ -1,23 +1,20 @@
-const winston = require('winston');
-const expressWinston = require('express-winston');
-
-const winston = require('winston');
-const expressWinston = require('express-winston');
+const myWinston = require('winston');
+const myExpressWinston = require('express-winston');
 
 // логгер запросов
-const requestLogger = expressWinston.logger({
+const requestLogger = myExpressWinston.logger({
   transports: [
-    new winston.transports.File({ filename: 'request.log' }),
+    new myWinston.transports.File({ filename: 'request.log' }),
   ],
-  format: winston.format.json(),
+  format: myWinston.format.json(),
 });
 
 // логгер ошибок
-const errorLogger = expressWinston.errorLogger({
+const errorLogger = myExpressWinston.errorLogger({
   transports: [
-    new winston.transports.File({ filename: 'error.log' }),
+    new myWinston.transports.File({ filename: 'error.log' }),
   ],
-  format: winston.format.json(),
+  format: myWinston.format.json(),
 });
 
 module.exports = {

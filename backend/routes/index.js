@@ -6,7 +6,6 @@ const signinRouter = require('./signin');
 const auth = require('../middlewares/auth');
 const NotFoundError = require('../errors/NotFoundError');
 
-
 router.use('/signup', signupRouter);
 router.use('/signin', signinRouter);
 router.use(auth);
@@ -16,5 +15,3 @@ router.use('*', (req, res, next) => {
   next(NotFoundError('Страница не найдена'));
 });
 module.exports = router;
-
-

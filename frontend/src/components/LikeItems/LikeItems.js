@@ -11,14 +11,14 @@ export default function LikeItems({ likes, idDeveloper, idCard }) {
 
   function buttonLike() {
     if (isLike) {
-      api.deleteLike(idCard)
+      api.deleteLike(idCard,localStorage.token)
         .then((res) => {
           setIsLike(false)
           setCount(res.likes.length)
         })
         .catch((error) => console.error(`Ошибка снятия лайка ${error}`));
     } else {
-      api.addLike(idCard)
+      api.addLike(idCard, localStorage.token)
       .then((res) => {
         setIsLike(true)
         setCount(res.likes.length)

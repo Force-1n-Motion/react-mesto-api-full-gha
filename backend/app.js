@@ -1,13 +1,16 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const { errors } = require('celebrate');
-const errorHandler = require('./middlewares/error-handler');
 const cors = require('cors');
-const { PORT, DB_URL } = process.env;
+const errorHandler = require('./middlewares/error-handler');
 
+const { requestLogger, errorLogger } = require('./middlewares/logger');
+
+const { PORT = 3000, DB_URL = 'mongodb://localhost:27017/mestodb' } = process.env;
 const app = express();
 app.use(cors());
 
@@ -16,24 +19,26 @@ const limiter = rateLimit({
   max: 100,
 });
 
-app.use(limiter);
 app.use(helmet());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/crash-test', () => {
-  setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
-  }, 0);
-});
+// app.get('/crash-test', () => {
+//   setTimeout(() => {
+//     throw new Error('Сервер сейчас упадёт');
+//   }, 0);
+// });
 
 mongoose.connect(DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
+app.use(requestLogger);
+app.use(limiter);
 app.use('/', require('./routes/index'));
 
+app.use(errorLogger);
 app.use(errors());
 
 app.use(errorHandler);

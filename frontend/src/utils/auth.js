@@ -18,6 +18,9 @@ export function signup(email, password) {
   });
 }
 
+
+
+
 export function checkToken(token) {
   return axios.post(`${BASE_URL}/users/me`, null, {
     headers: {

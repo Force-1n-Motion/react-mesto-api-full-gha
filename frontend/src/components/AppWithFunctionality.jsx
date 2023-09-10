@@ -87,7 +87,7 @@ function App() {
 
   useEffect(() => {
     setIsLoadingElements(true);
-    Promise.all([api.getInfo(), api.getCards()])
+    Promise.all([api.getInfo(localStorage.token), api.getCards(localStorage.token)])
       .then(([userBox, cardBox]) => {
         setCurrentUser(userBox);
         setCards(cardBox);
@@ -96,11 +96,12 @@ function App() {
       .catch((error) => console.error(`Чрезвычайное происшествие ${error}`));
   }, []);
 
+ 
   function handleDeleteCard(evt) {
     evt.preventDefault();
     setIsSending(true);
     api
-      .deletecard(idCardDelete)
+      .deletecard(idCardDelete, localStorage.token)
       .then(() => {
         setCards(
           cards.filter((item) => {
@@ -117,7 +118,7 @@ function App() {
   function handleUpdateUser(dataUser, resetData) {
     setIsSending(true);
     api
-      .setUserInfo(dataUser)
+      .setUserInfo(dataUser, localStorage.token)
       .then((res) => {
         setCurrentUser(res);
         сlosePopup();
@@ -128,10 +129,10 @@ function App() {
       .finally(() => setIsSending(false));
   }
 
-  function handleUpdateAvatar(dataUser, resetData) {
+  function handleUpdateAvatar(dataUser, resetData,) {
     setIsSending(true);
     api
-      .setUserAvatar(dataUser)
+      .setUserAvatar(dataUser,localStorage.token)
       .then((res) => {
         setCurrentUser(res);
         сlosePopup();
@@ -145,7 +146,7 @@ function App() {
   function handleAddPlaceSubmit(dataCard, resetData) {
     setIsSending(true);
     api
-      .addCard(dataCard)
+      .addCard(dataCard, localStorage.token)
       .then((res) => {
         setCards([res, ...cards]);
         сlosePopup();
