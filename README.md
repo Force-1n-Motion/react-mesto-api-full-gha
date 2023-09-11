@@ -11,6 +11,6 @@
 
 IP-адрес 158.160.115.2
 
-Frontend https://...
+Frontend azhgar.nomoredomainsicu.ru
 
-Backend https://...
+Backend api.azhgar.nomoredomainsicu.ru
