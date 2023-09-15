@@ -1,7 +1,6 @@
  class Api {
   constructor(options) {
     this._url = options.baseUrl;
-   
   }
 
   _verification(res) { return res.ok ? res.json() : Promise.reject }
@@ -96,8 +95,7 @@
 
 
 const api = new Api({ //Экземпляр класса Api
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-66",
- 
+  baseUrl: "https://localhost:3000",
 })
 
 export default api

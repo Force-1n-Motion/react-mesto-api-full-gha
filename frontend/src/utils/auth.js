@@ -2,7 +2,7 @@
 
 import axios from "axios";
 
-const BASE_URL = "https://auth.nomoreparties.co";
+const BASE_URL = "https://localhost:3000";
 
 export function signin(email, password) {
   return axios.post(`${BASE_URL}/signin`, {
