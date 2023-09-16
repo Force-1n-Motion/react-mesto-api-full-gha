@@ -18,4 +18,3 @@ export default function PopupWithForm({name, title, button, children, open, onCl
     </div>
   );
 }
-// Удалить класс лоадера на кнопке если не используется

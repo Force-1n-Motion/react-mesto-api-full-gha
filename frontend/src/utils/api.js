@@ -94,8 +94,8 @@
 }
 
 
-const api = new Api({ //Экземпляр класса Api
-  baseUrl: "https://localhost:3000",
+const api = new Api({
+  baseUrl: "api.azhgar.nomoredomainsicu.ru",
 })
 
 export default api
