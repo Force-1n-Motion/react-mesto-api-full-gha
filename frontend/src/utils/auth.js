@@ -2,7 +2,7 @@
 
 import axios from "axios";
 
-const BASE_URL = "api.azhgar.nomoredomainsicu.ru";
+const BASE_URL = "https://api.azhgar.nomoredomainsicu.ru";
 
 export function signin(email, password) {
   return axios.post(`${BASE_URL}/signin`, {

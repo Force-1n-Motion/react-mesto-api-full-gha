@@ -95,7 +95,7 @@
 
 
 const api = new Api({
-  baseUrl: "api.azhgar.nomoredomainsicu.ru",
+  baseUrl: "https://api.azhgar.nomoredomainsicu.ru",
 })
 
 export default api
