@@ -3,26 +3,31 @@
     this._url = options.baseUrl;
   }
 
-  _verification(res) { return res.ok ? res.json() : Promise.reject }
+   _verification(res) { return res.ok ? res.json() : Promise.reject }
+   
+   _request(url, options) {
+     return fetch(`${this._url}${url}`, options)
+     .then(this._verification)
+   }
 
   getInfo(token) {
-    return fetch(`${this._url}/users/me`, {
-      headers: {
-        "Authorization": `Bearer ${token}`
-      },
-    }).then(this._verification);
-  }
-  getCards(token) {
-    return fetch(`${this._url}/cards`, {
+    return this._request('/users/me', {
       headers: {
         "Authorization": `Bearer ${token}`
       }
     })
-      .then(this._verification);
+  }
+   
+  getCards(token) {
+    return this._request('/cards', {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    })
   }
   
-  setUserInfo(data,token) {
-    return fetch(`${this._url}/users/me`, {
+  setUserInfo(data, token) {
+    return this._request('/users/me', {
       method: "PATCH",
       headers: {
         "Content-Type":'application/json', 
@@ -33,11 +38,10 @@
         about: data.occupation,
       })
     })
-      .then(this._verification);
   }
 
-  setUserAvatar(data,token) {
-    return fetch(`${this._url}/users/me/avatar`, {
+   setUserAvatar(data, token) {
+    return this._request('/users/me/avatar', {
       method: "PATCH",
       headers: {
         "Content-Type":'application/json', 
@@ -47,11 +51,10 @@
         avatar: data.avatar,
       })
     })
-      .then(this._verification)
   }
 
-  addCard(data,token) {
-    return fetch(`${this._url}/cards`, {
+  addCard(data, token) {
+    return this._request('/cards', {
       method: "POST",
       headers: {
         "Content-Type":'application/json', 
@@ -62,34 +65,33 @@
         link: data.link,
       })
     })
-    .then(this._verification)
   }
+   
   addLike(idCard,token) {
-    return fetch(`${this._url}/cards/${idCard}/likes`, {
+    return this._request(`/cards/${idCard}/likes`, {
       method: "PUT",
       headers: {
         "Authorization": `Bearer ${token}`
       }
     })
-    .then(this._verification);
   }
-  deleteLike(idCard,token) {
-    return fetch(`${this._url}/cards/${idCard}/likes`, {
+   
+  deleteLike(idCard, token) {
+    return this._request(`/cards/${idCard}/likes`, {
       method: "DELETE",
       headers: {
         "Authorization": `Bearer ${token}`
       }
     })
-    .then(this._verification);
   }
-  deletecard(idCard,token) {
-    return fetch(`${this._url}/cards/${idCard}`, {
+   
+  deleteCard(idCard,token) {
+    return this._request(`/cards${idCard}`, {
       method: "DELETE",
       headers: {
         "Authorization": `Bearer ${token}`
       }
     })
-    .then(this._verification);
   }
 }
 
