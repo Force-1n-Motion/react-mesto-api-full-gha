@@ -29,10 +29,13 @@ mongoose.connect(DB_URL, {
 });
 
 app.use(requestLogger);
+
 app.use(limiter);
+
 app.use('/', require('./routes/index'));
 
 app.use(errorLogger);
+
 app.use(errors());
 
 app.use(errorHandler);
