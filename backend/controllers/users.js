@@ -6,7 +6,7 @@ const User = require('../models/user');
 const BadRequestError = require('../errors/BadRequestError');
 const NotFoundError = require('../errors/NotFoundError');
 const ConflictError = require('../errors/ConflictError');
-const { JWT_SECRET } = require('../app.config');
+const { JWT_SECRET, NODE_ENV } = require('../app.config');
 require('dotenv').config();
 
 module.exports.getUsers = (req, res, next) => {
@@ -89,7 +89,7 @@ module.exports.login = (req, res, next) => {
   return User.findUserByCredentials(email, password)
     .then((user) => {
       // jwt.sign({ _id: user._id }, jwtSecret, { expiresIn: '7d' });
-      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'secret-code');
+      const token = jwt.sign({ _id: user._id }, { expiresIn: '7d' }, NODE_ENV === 'production' ? JWT_SECRET : 'secret-code');
       res.send({ token });
     })
     .catch((err) => {
