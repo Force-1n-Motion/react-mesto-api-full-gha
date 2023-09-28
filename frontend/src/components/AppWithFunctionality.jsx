@@ -101,7 +101,7 @@ function App() {
     evt.preventDefault();
     setIsSending(true);
     api
-      .deletecard(idCardDelete, localStorage.token)
+      .deleteCard(idCardDelete, localStorage.token)
       .then(() => {
         setCards(
           cards.filter((item) => {
